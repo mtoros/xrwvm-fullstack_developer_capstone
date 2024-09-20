@@ -1,5 +1,5 @@
 # Uncomment the imports below before you add the function code
-# import requests
+import requests
 import os
 from dotenv import load_dotenv
 
@@ -20,11 +20,13 @@ def get_request(endpoint, **kwargs):
             params=params+key+"="+value+"&"
 
     request_url = backend_url+endpoint+"?"+params
-
+    
+    print("I am in get_request!")
     print("GET from {} ".format(request_url))
     try:
         # Call get method of requests library with URL and parameters
-        response = requests.get(request_url)
+        #response = requests.get(request_url)
+        response = requests.get("https://mtoros-3030.theiadockernext-1-labs-prod-theiak8s-4-tor01.proxy.cognitiveclass.ai/fetchDealers")
         return response.json()
     except:
         # If any error occurs
