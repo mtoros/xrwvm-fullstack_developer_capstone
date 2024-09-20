@@ -25,8 +25,8 @@ def get_request(endpoint, **kwargs):
     print("GET from {} ".format(request_url))
     try:
         # Call get method of requests library with URL and parameters
-        #response = requests.get(request_url)
-        response = requests.get("https://mtoros-3030.theiadockernext-1-labs-prod-theiak8s-4-tor01.proxy.cognitiveclass.ai/fetchDealers")
+        response = requests.get(request_url)
+        #response = requests.get("https://mtoros-3030.theiadockernext-1-labs-prod-theiak8s-4-tor01.proxy.cognitiveclass.ai/fetchDealers")
         return response.json()
     except:
         # If any error occurs
@@ -37,7 +37,9 @@ def get_request(endpoint, **kwargs):
 # request_url = sentiment_analyzer_url+"analyze/"+text
 # Add code for retrieving sentiments
 def analyze_review_sentiments(text):
+    #request_url = sentiment_analyzer_url+"analyze/"+text
     request_url = sentiment_analyzer_url+"analyze/"+text
+    print("DEBUGGING: "+text)
     try:
         # Call get method of requests library with URL and parameters
         response = requests.get(request_url)
@@ -49,6 +51,7 @@ def analyze_review_sentiments(text):
 # def post_review(data_dict):
 # Add code for posting review
 def post_review(data_dict):
+    print("DEBUG: I am in post-review!!!!")
     request_url = backend_url+"/insert_review"
     try:
         response = requests.post(request_url,json=data_dict)
