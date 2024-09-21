@@ -67,7 +67,7 @@ def registration(request):
     first_name = data['firstName']
     last_name = data['lastName']
     email = data['email']
-    username_exist = False # email_exist = False
+    username_exist = False  # email_exist = False
     try:
         # Check if user already exists
         User.objects.get(username=username)
@@ -79,10 +79,10 @@ def registration(request):
     # If it is a new user
     if not username_exist:
         # Create user in auth_user table
-        user = User.objects.create_user(username=username, 
+        user = User.objects.create_user(username=username,
                                         first_name=first_name,
-                                        last_name=last_name, 
-                                        password=password, 
+                                        last_name=last_name,
+                                        password=password,
                                         email=email)
         # Login the user and redirect to list page
         login(request, user)
@@ -132,7 +132,7 @@ def get_dealer_reviews(request, dealer_id):
 
 # Create a `get_dealer_details` view to render the dealer details
 def get_dealer_details(request, dealer_id):
-    if(dealer_id):
+    if (dealer_id):
         endpoint = "/fetchDealer/" + str(dealer_id)
         dealership = get_request(endpoint)
         return JsonResponse({"status": 200, "dealer": dealership})
