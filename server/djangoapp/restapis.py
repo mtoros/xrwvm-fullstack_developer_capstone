@@ -11,23 +11,24 @@ sentiment_analyzer_url = os.getenv(
     'sentiment_analyzer_url',
     default="http://localhost:5050/")
 
+
 # Add code for get requests to back end
 def get_request(endpoint, **kwargs):
     params = ""
-    if(kwargs):
-        for key,value in kwargs.items():
-            params=params+key+"="+value+"&"
+    if (kwargs):
+        for key, value in kwargs.items():
+            params=params + key + "=" + value + "&"
 
     request_url = backend_url+endpoint+"?"+params
-    
+
     print("I am in get_request!")
     print("GET from {} ".format(request_url))
     try:
         # Call get method of requests library with URL and parameters
         response = requests.get(request_url)
-        #response = requests.get("https://mtoros-3030.theiadockernext-1-labs-prod-theiak8s-4-tor01.proxy.cognitiveclass.ai/fetchDealers")
+        # response = requests.get("https://mtoros-3030.theiadockernext-1-labs-prod-theiak8s-4-tor01.proxy.cognitiveclass.ai/fetchDealers")
         return response.json()
-    except:
+    except Exception:
         # If any error occurs
         print("Network exception occurred")
 
@@ -46,6 +47,7 @@ def analyze_review_sentiments(text):
         print(f"Unexpected {err=}, {type(err)=}")
         print("Network exception occurred")
 
+
 # Add code for posting review
 def post_review(data_dict):
     print("DEBUG: I am in post-review!!!!")
@@ -54,5 +56,5 @@ def post_review(data_dict):
         response = requests.post(request_url, json=data_dict)
         print(response.json())
         return response.json()
-    except:
+    except Exception:
         print("Network exception occurred")
